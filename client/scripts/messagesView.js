@@ -8,14 +8,30 @@ var MessagesView = {
   initialize: function() {
     // TODO: Perform any work which needs to be done
     // when this view loads.
+
+    //Grab messages
+    //Do something with messages.
   },
 
-  render: function() {
+  render: function(data = Messages._data, roomname) {
     // TODO: Render _all_ the messages.
+    //iterate through data
+
+
+    this.$chats.html('');
+    for (msg of data) {
+
+      if (msg.roomname === roomname || roomname === undefined) {
+        this.renderMessage(msg);
+      }
+
+      //console.log(msg);
+    }
   },
 
   renderMessage: function(message) {
-    // TODO: Render a single message.
+    this.$chats.append(MessageView.render(message));
+
   },
 
   handleClick: function(event) {

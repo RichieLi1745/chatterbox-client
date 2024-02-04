@@ -16,8 +16,21 @@ var FormView = {
 
     // TODO: Currently, this is all handleSubmit does.
     // Make this function actually send a message to the Parse API.
-  
+
     console.log('click!');
+    var theMessage = $('#message').val();
+
+    var msgformat = {
+      username: App.username,
+      text: theMessage,
+      roomname: '4chan',
+    };
+    Parse.create(msgformat, ()=>{
+      App.fetch((data) => {
+        Messages.getNew(data);
+        MessagesView.render();
+      });
+    });
   },
 
   setStatus: function(active) {
